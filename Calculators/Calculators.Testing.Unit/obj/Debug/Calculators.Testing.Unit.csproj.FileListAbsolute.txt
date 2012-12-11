@@ -1,0 +1,9 @@
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\Calculators.Testing.Unit.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\Calculators.Testing.Unit.pdb
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\Calculators.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\nunit.framework.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\Calculators.pdb
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\bin\Debug\nunit.framework.xml
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\obj\Debug\Calculators.Testing.Unit.csprojResolveAssemblyReference.cache
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\obj\Debug\Calculators.Testing.Unit.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators.Testing.Unit\obj\Debug\Calculators.Testing.Unit.pdb

@@ -1,0 +1,5 @@
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators\bin\Debug\Calculators.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators\bin\Debug\Calculators.pdb
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators\obj\Debug\Calculators.csprojResolveAssemblyReference.cache
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators\obj\Debug\Calculators.dll
+C:\Users\Elad\Documents\GitHub\Calculators\Calculators\Calculators\obj\Debug\Calculators.pdb
