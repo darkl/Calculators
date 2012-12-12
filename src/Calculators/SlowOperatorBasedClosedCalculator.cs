@@ -5,7 +5,7 @@ namespace Calculators
     public class SlowOperatorBasedClosedCalculator<T> : FieldBasedClosedCalculator<T>
         where T : struct 
     {
-        public SlowOperatorBasedClosedCalculator() : base(new SlowOperatorBaseField<T>())
+        public SlowOperatorBasedClosedCalculator() : base(new SlowOperatorBasedField<T>())
         {
         }
     }

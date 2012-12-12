@@ -2,7 +2,7 @@
 
 namespace Calculators.Algebra
 {
-    public class SlowOperatorBaseField<T> : SlowOperatorBasedRing<T>, IField<T> where T : struct
+    public class SlowOperatorBasedField<T> : SlowOperatorBasedRing<T>, IField<T> where T : struct
     {
         public T Inverse(T x)
         {
