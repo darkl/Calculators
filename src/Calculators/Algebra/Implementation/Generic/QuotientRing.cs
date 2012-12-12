@@ -1,4 +1,5 @@
-﻿using Calculators.Algebra.Abstract;
+﻿using System.Collections.Generic;
+using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
 {
@@ -6,11 +7,13 @@ namespace Calculators.Algebra
     {
         private readonly IIdeal<T> mIdeal;
         private readonly IRing<T> mRing;
+        private IEqualityComparer<T> mComparer;
 
         public QuotientRing(IIdeal<T> ideal)
         {
             mRing = ideal.Ring;
             mIdeal = ideal;
+            mComparer = new QuotientRing<T>.ItemComparer(this);
         }
 
         public T Add(T x, T y)
@@ -43,5 +46,39 @@ namespace Calculators.Algebra
                 return mIdeal.Modulo(mRing.Identity);
             }
         }
+
+        public IEqualityComparer<T> Comparer
+        {
+            get
+            {
+                return mComparer;
+            }
+        }
+
+        #region Comparer Implementation
+
+        private class ItemComparer : IEqualityComparer<T>
+        {
+            private readonly QuotientRing<T> mRing;
+
+            public ItemComparer(QuotientRing<T> ring)
+            {
+                mRing = ring;
+            }
+
+            public bool Equals(T x, T y)
+            {
+                return mRing.Comparer.Equals
+                    (mRing.mIdeal.Modulo(x),
+                     mRing.mIdeal.Modulo(y));
+            }
+
+            public int GetHashCode(T obj)
+            {
+                return mRing.Comparer.GetHashCode(mRing.mIdeal.Modulo(obj));
+            }
+        }
+
+        #endregion
     }
 }

@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algebra\Abstract\IIdeal.cs" />
+    <Compile Include="Algebra\Abstract\IPrincipalIdeal.cs" />
     <Compile Include="Algebra\Implementation\Generic\CartesianProductRing.cs" />
+    <Compile Include="Algebra\Abstract\IEuclideanRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\PrincipalIdeal.cs" />
+    <Compile Include="Algebra\Implementation\Generic\QuotientRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedEuclideanRing.cs" />
     <Compile Include="Algebra\Implementation\GoldenRatioRing.cs" />
+    <Compile Include="Algebra\Implementation\IntegersModuloRing.cs" />
+    <Compile Include="Algebra\Implementation\IntegersRing.cs" />
+    <Compile Include="Algebra\Implementation\Polynomial.cs" />
+    <Compile Include="Algebra\Implementation\PolynomialRing.cs" />
     <Compile Include="FieldBasedClosedCalculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="Algebra\Abstract\IField.cs" />
@@ -53,7 +63,7 @@
     <Compile Include="SlowOperatorBasedClosedCalculator.cs" />
     <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBaseField.cs" />
+    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

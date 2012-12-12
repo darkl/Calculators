@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
@@ -48,6 +49,15 @@ namespace Calculators.Algebra
                 }
 
                 return (T) Activator.CreateInstance(typeof (T), 1);
+            }
+        }
+
+        public IEqualityComparer<T> Comparer
+        {
+            get
+            {
+                // Default is good enough in most cases.
+                return EqualityComparer<T>.Default;
             }
         }
     }
