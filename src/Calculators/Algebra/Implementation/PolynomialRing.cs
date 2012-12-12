@@ -9,9 +9,9 @@ namespace Calculators.Algebra
         private readonly IRing<T> mCoefficientsRing;
         private readonly IEqualityComparer<Polynomial<T>> mComparer;
 
-        public PolynomialRing(IRing<T> coefficientsField)
+        public PolynomialRing(IRing<T> coefficientsRing)
         {
-            mCoefficientsRing = coefficientsField;
+            mCoefficientsRing = coefficientsRing;
             mComparer = new ItemComparer(this);
         }
 
