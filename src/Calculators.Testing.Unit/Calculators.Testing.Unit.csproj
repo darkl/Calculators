@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="GoldenRatioRingTests.cs" />
     <Compile Include="IntegersModuloRingTest.cs" />
+    <Compile Include="PolynomialTests.cs" />
     <Compile Include="SlowOperatorBasedRingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

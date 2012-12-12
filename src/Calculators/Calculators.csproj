@@ -51,6 +51,8 @@
     <Compile Include="Algebra\Implementation\IntegersModuloRing.cs" />
     <Compile Include="Algebra\Implementation\IntegersRing.cs" />
     <Compile Include="Algebra\Implementation\Polynomial.cs" />
+    <Compile Include="Algebra\Implementation\PolynomialExtensions.cs" />
+    <Compile Include="Algebra\Implementation\PolynomialOverFieldRing.cs" />
     <Compile Include="Algebra\Implementation\PolynomialRing.cs" />
     <Compile Include="FieldBasedClosedCalculator.cs" />
     <Compile Include="ICalculator.cs" />

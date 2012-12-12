@@ -60,5 +60,10 @@ namespace Calculators.Algebra
                 return mCoefficientsRing;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Join(",", mCoefficients);
+        }
     }
 }
