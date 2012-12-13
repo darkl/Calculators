@@ -4,7 +4,7 @@ using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
 {
-    public class PolynomialRing<T> : IRing<Polynomial<T>>
+    public class PolynomialRing<T> : IRing<Polynomial<T>>, IModule<T, Polynomial<T>>
     {
         private readonly IRing<T> mCoefficientsRing;
         private readonly IEqualityComparer<Polynomial<T>> mComparer;
@@ -94,6 +94,18 @@ namespace Calculators.Algebra
             return new Polynomial<T>(coefficients, CoefficientsRing);
         }
 
+        public Polynomial<T> Multiply(T scalar, Polynomial<T> vector)
+        {
+            T[] coefficients = new T[vector.Degree + 1];
+
+            for (int i = 0; i <= vector.Degree; i++)
+            {
+                coefficients[i] = mCoefficientsRing.Multiply(scalar, vector[i]);
+            }
+
+            return new Polynomial<T>(coefficients, mCoefficientsRing);
+        }
+
         public Polynomial<T> Identity
         {
             get
@@ -113,6 +125,14 @@ namespace Calculators.Algebra
         public IRing<T> CoefficientsRing
         {
             get { return mCoefficientsRing; }
+        }
+
+        IRing<T> IModule<T, Polynomial<T>>.Ring
+        {
+            get
+            {
+                return mCoefficientsRing;
+            }
         }
 
         #region Comparer Implementation

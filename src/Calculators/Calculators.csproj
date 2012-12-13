@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algebra\Abstract\IIdeal.cs" />
+    <Compile Include="Algebra\Abstract\IModule.cs" />
     <Compile Include="Algebra\Abstract\IPrincipalIdeal.cs" />
     <Compile Include="Algebra\Implementation\Generic\CartesianProductRing.cs" />
     <Compile Include="Algebra\Abstract\IEuclideanRing.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="Algebra\Abstract\IMultiplicativeSemigroup.cs" />
     <Compile Include="Algebra\Abstract\IRing.cs" />
     <Compile Include="IClosedCalculator.cs" />
+    <Compile Include="OperatorSyntax.cs" />
+    <Compile Include="PolynomialOperatorSyntax.cs" />
     <Compile Include="SlowOperatorBasedClosedCalculator.cs" />
     <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
