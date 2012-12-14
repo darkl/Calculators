@@ -4,7 +4,7 @@ using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
 {
-    public class PolynomialRing<T> : IRing<Polynomial<T>>, IModule<T, Polynomial<T>>
+    public class PolynomialRing<T> : IModule<T, Polynomial<T>>,  IRingEmbedding<T, Polynomial<T>>
     {
         private readonly IRing<T> mCoefficientsRing;
         private readonly IEqualityComparer<Polynomial<T>> mComparer;
@@ -110,8 +110,13 @@ namespace Calculators.Algebra
         {
             get
             {
-                return new Polynomial<T>(new[] {CoefficientsRing.Identity}, CoefficientsRing);
+                return Embed(CoefficientsRing.Identity);
             }
+        }
+
+        public Polynomial<T> Embed(T element)
+        {
+            return new Polynomial<T>(new[] {element}, CoefficientsRing);
         }
 
         public IEqualityComparer<Polynomial<T>> Comparer
