@@ -73,6 +73,11 @@ namespace Calculators.Algebra
                 throw new ArgumentException("Polynomials must be over the current ring's coefficients ring");
             }
 
+            if (this.Comparer.Equals(x, this.Zero) || this.Comparer.Equals(y, this.Zero))
+            {
+                return this.Zero;
+            }
+
             int suggestedDegree = x.Degree + y.Degree;
 
             T[] coefficients = new T[suggestedDegree + 1];

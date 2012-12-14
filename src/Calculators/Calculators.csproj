@@ -46,6 +46,7 @@
     <Compile Include="Algebra\Abstract\IIdeal.cs" />
     <Compile Include="Algebra\Abstract\IModule.cs" />
     <Compile Include="Algebra\Abstract\IPrincipalIdeal.cs" />
+    <Compile Include="Algebra\Abstract\IRingEmbedding.cs" />
     <Compile Include="Algebra\Implementation\Generic\CartesianProductRing.cs" />
     <Compile Include="Algebra\Abstract\IEuclideanRing.cs" />
     <Compile Include="Algebra\Implementation\Generic\PrincipalIdeal.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialExtensions.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialOverFieldRing.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialParser.cs" />
+    <Compile Include="Algebra\Implementation\Polynomial\PolynomialParserOptions.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialRing.cs" />
     <Compile Include="FieldBasedClosedCalculator.cs" />
     <Compile Include="ICalculator.cs" />
@@ -68,7 +70,6 @@
     <Compile Include="Algebra\Abstract\IRing.cs" />
     <Compile Include="IClosedCalculator.cs" />
     <Compile Include="OperatorSyntax.cs" />
-    <Compile Include="Algebra\Implementation\Polynomial\PolynomialOperatorSyntax.cs" />
     <Compile Include="SlowOperatorBasedClosedCalculator.cs" />
     <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

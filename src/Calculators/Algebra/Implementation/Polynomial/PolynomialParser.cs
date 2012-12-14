@@ -1,46 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Calculators.Algebra.Abstract;
 using Mono.CSharp;
+using Delegate = System.Delegate;
 
 namespace Calculators.Algebra
 {
     public class PolynomialParser
     {
         private readonly Evaluator mEvaluator;
+        private readonly string mArgument;
+        private readonly string mDeclarationFormat;
+        private readonly Dictionary<string, object> mAliases;
 
-        public PolynomialParser()
+        public PolynomialParser() : this(new PolynomialParserOptions())
         {
-            mEvaluator = new Evaluator(new CompilerSettings(){AssemblyReferences = 
-                new List<string>(){"System.Core"}}, 
-                new Report(new StreamReportPrinter(new StringWriter(new StringBuilder()))));
+        }
 
-            mEvaluator.ReferenceAssembly(typeof(PolynomialOperatorSyntax<>).Assembly);
+        public PolynomialParser(PolynomialParserOptions options)
+        {
+            if (options == null)
+            {
+                throw new ArgumentNullException("options");
+            }
 
-            mEvaluator.Run("using System;");
-            mEvaluator.Run("using System.Linq.Expressions;");
-            mEvaluator.Run("using Calculators.Algebra;");
+            mEvaluator = CreateEvaluator();
+
+            mArgument = options.Argument ?? "x";
+
+            mAliases = options.Aliases ?? new Dictionary<string, object>();
+
+            const string declarationFormatFormat =
+                "Func<{0}, dynamic> evaluator = ({1}) => ({{0}});";
+
+            if (mAliases != null)
+            {
+                string parameterTypes =
+                    string.Join(", ",
+                                new[] {mArgument}.Concat(mAliases.Keys).Select(x => "dynamic"));
+
+                string parameterNames =
+                    string.Join(", ",
+                                new[] {mArgument}.Concat(mAliases.Keys).Select(x => "dynamic " + x));
+
+                mDeclarationFormat = string.Format(declarationFormatFormat, parameterTypes, parameterNames);
+            }
+        }
+
+        private static Evaluator CreateEvaluator()
+        {
+            var result =
+                new Evaluator(new CompilerSettings()
+                                  {
+                                      AssemblyReferences =
+                                          new List<string>() {"System.Core"}
+                                  },
+                              new Report(new StreamReportPrinter(new StringWriter(new StringBuilder()))));
+
+            result.ReferenceAssembly(typeof(OperatorSyntax<>).Assembly);
+
+            result.Run("using System;");
+            result.Run("using Calculators.Algebra;");
+
+            return result;
         }
 
         public Polynomial<T> Parse<T>(string expression, IRing<T> ring)
         {
-            string declarationFormat = 
-                "Func<PolynomialOperatorSyntax<{0}>, PolynomialOperatorSyntax<{0}>> evaluator = x => ({1});";
-
             string declaration =
-                string.Format(declarationFormat, typeof (T).FullName, expression);
+                string.Format(mDeclarationFormat, expression);
 
             mEvaluator.Run(declaration);
-            Func<PolynomialOperatorSyntax<T>, PolynomialOperatorSyntax<T>> evaluator =
+            Delegate evaluator =
                 mEvaluator.Evaluate("evaluator;")
-                as Func<PolynomialOperatorSyntax<T>, PolynomialOperatorSyntax<T>>;
+                as Delegate;
 
             PolynomialRing<T> polynomialRing = new PolynomialRing<T>(ring);
-            
-            PolynomialOperatorSyntax<T> evaluated =
-                evaluator(new PolynomialOperatorSyntax<T>(ring.CreateMonomial(ring.Identity, 1), polynomialRing));
+
+            OperatorSyntax<Polynomial<T>> polynomialArgument = 
+                new OperatorSyntax<Polynomial<T>>(ring.CreateMonomial(ring.Identity, 1), polynomialRing);
+
+            object[] arguments = new object[] {polynomialArgument}.Concat(mAliases.Values).ToArray();
+
+            OperatorSyntax<Polynomial<T>> evaluated =
+                evaluator.DynamicInvoke(arguments) as OperatorSyntax<Polynomial<T>>;
 
             return evaluated.Value;
         }
