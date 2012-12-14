@@ -114,6 +114,14 @@ namespace Calculators.Algebra
             }
         }
 
+        public IRing<T> Subring
+        {
+            get
+            {
+                return this.CoefficientsRing;
+            }
+        }
+
         public Polynomial<T> Embed(T element)
         {
             return new Polynomial<T>(new[] {element}, CoefficientsRing);
@@ -132,7 +140,7 @@ namespace Calculators.Algebra
             get { return mCoefficientsRing; }
         }
 
-        IRing<T> IModule<T, Polynomial<T>>.Ring
+        public IRing<T> ScalarRing
         {
             get
             {

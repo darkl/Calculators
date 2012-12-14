@@ -2,7 +2,7 @@
 {
     public interface IModule<TRingElement, TElement> : IAdditiveGroup<TElement>
     {
-        IRing<TRingElement> Ring { get; }
+        IRing<TRingElement> ScalarRing { get; }
 
         TElement Multiply(TRingElement scalar, TElement vector);
     }
