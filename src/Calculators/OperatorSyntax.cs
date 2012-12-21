@@ -165,62 +165,12 @@ namespace Calculators
 
             if (operatorSyntaxArgument == null)
             {
-                T underlyingValue;
-
-                if (!TryConvert(value, out underlyingValue))
-                {
-                    underlyingValue = Convert(((dynamic) operatorSyntax.mRing), (dynamic) value);
-                }
+                T underlyingValue = PolynomialBuilder.BuildForRing(value, operatorSyntax.mRing);
 
                 operatorSyntaxArgument = new OperatorSyntax<T>(underlyingValue, operatorSyntax.mRing);
             }
 
             return operation(operatorSyntaxArgument, operatorSyntax);
-        }
-
-        private static bool TryConvert<TCasted>(object arg, out TCasted result)
-        {
-            result = default(TCasted);
-
-            if (arg is TCasted)
-            {
-                result = (TCasted) arg;
-                return true;
-            }
-
-            if (arg is IConvertible && typeof (IConvertible).IsAssignableFrom(typeof (TCasted)))
-            {
-                try
-                {
-                    dynamic dynamicCasted = arg;
-                    result = (TCasted) dynamicCasted;
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-
-            return false;
-        }
-
-        private static dynamic Convert<TOriginalElement, TElement, TGivenElement>(
-            IRingEmbedding<TOriginalElement, TElement> embedding, TGivenElement givenElement)
-        {
-            TOriginalElement converted;
-
-            if (TryConvert(givenElement, out converted))
-            {
-                return embedding.Embed(converted);
-            }
-
-            return embedding.Embed(Convert((dynamic) embedding.Subring, (dynamic)givenElement));
-        }
-
-        private static dynamic Convert(object embedding, object givenElement)
-        {
-            throw new ArgumentException("Argument was not contained in any subring of the given ring.");
         }
 
         #endregion

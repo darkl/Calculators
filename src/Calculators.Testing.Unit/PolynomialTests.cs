@@ -17,7 +17,7 @@ namespace Calculators.Testing.Unit
             PolynomialParser parser = new PolynomialParser();
 
             IRing<double> ring = new SlowOperatorBasedRing<double>();
-            
+
             Polynomial<double> parsed =
                 parser.Parse(somePolynomial, ring);
 
@@ -61,8 +61,8 @@ namespace Calculators.Testing.Unit
 
             Polynomial<Polynomial<double>> expectedResult =
                 complexPolynomialRing.Add(
-                complexRing.CreateMonomial(complexRing.Identity, 4),
-                complexPolynomialRing.Identity);
+                    complexRing.CreateMonomial(complexRing.Identity, 4),
+                    complexPolynomialRing.Identity);
 
             Assert.IsTrue(complexPolynomialRing.Comparer.Equals(parsed, expectedResult));
         }
@@ -80,18 +80,18 @@ namespace Calculators.Testing.Unit
                 new QuotientRing<Polynomial<double>>
                     (new PrincipalIdeal<Polynomial<double>>
                          (rationalPolynomialRing,
-                          new Polynomial<double>(new double[] { -2, 0, 1 }, rationalField)));
+                          new Polynomial<double>(new double[] {-2, 0, 1}, rationalField)));
 
             var sqrt2 = rationalField.CreateMonomial(1, 1);
 
             PolynomialParser parser = new PolynomialParser
                 (new PolynomialParserOptions()
-                {
-                    Aliases = new Dictionary<string, object>()
+                     {
+                         Aliases = new Dictionary<string, object>()
                                        {
                                            {"sqrt2", sqrt2}
                                        }
-                });
+                     });
 
             Polynomial<Polynomial<double>> parsed =
                 parser.Parse(somePolynomial, rationalWithSqrt2Ring);
@@ -101,8 +101,8 @@ namespace Calculators.Testing.Unit
 
             Polynomial<Polynomial<double>> expectedResult =
                 complexPolynomialRing.Add(
-                rationalWithSqrt2Ring.CreateMonomial(rationalWithSqrt2Ring.Identity, 4),
-                complexPolynomialRing.Identity);
+                    rationalWithSqrt2Ring.CreateMonomial(rationalWithSqrt2Ring.Identity, 4),
+                    complexPolynomialRing.Identity);
 
             Assert.IsTrue(complexPolynomialRing.Comparer.Equals(parsed, expectedResult));
         }
@@ -110,17 +110,47 @@ namespace Calculators.Testing.Unit
         [Test]
         public void TestDivision()
         {
-            PolynomialOverFieldRing<double> ring = new PolynomialOverFieldRing<double>(new SlowOperatorBasedField<double>());
+            PolynomialOverFieldRing<double> ring =
+                new PolynomialOverFieldRing<double>(new SlowOperatorBasedField<double>());
 
             Polynomial<double> remainder;
 
             var quotient =
-                ring.Divide(new Polynomial<double>(new double[] { -1, 0, 0, 1 }, ring.CoefficientsRing),
-                            new Polynomial<double>(new double[] { -1, 1 }, ring.CoefficientsRing), out remainder);
+                ring.Divide(new Polynomial<double>(new double[] {-1, 0, 0, 1}, ring.CoefficientsRing),
+                            new Polynomial<double>(new double[] {-1, 1}, ring.CoefficientsRing), out remainder);
 
             Assert.IsTrue(ring.Comparer.Equals(remainder, ring.Zero));
 
-            Assert.IsTrue(ring.Comparer.Equals(quotient, new Polynomial<double>(new double[] {1, 1, 1}, ring.CoefficientsRing)));
+            Assert.IsTrue(ring.Comparer.Equals(quotient,
+                                               new Polynomial<double>(new double[] {1, 1, 1}, ring.CoefficientsRing)));
+        }
+
+        [Test]
+        public void TestInverse()
+        {
+            SlowOperatorBasedField<double> rationalField = new SlowOperatorBasedField<double>();
+
+            PolynomialOverFieldRing<double> rationalPolynomialRing = new PolynomialOverFieldRing<double>(rationalField);
+
+            IField<Polynomial<double>> rationalWithSqrt2Ring =
+                new QuotientField<Polynomial<double>>
+                    (new PrincipalIdeal<Polynomial<double>>
+                         (rationalPolynomialRing,
+                          new Polynomial<double>(new double[] {-2, 0, 1}, rationalField)));
+
+            var sqrt2 = rationalField.CreateMonomial(1, 1);
+
+            var number = rationalWithSqrt2Ring.Add(sqrt2, rationalWithSqrt2Ring.Identity);
+
+            var result = rationalWithSqrt2Ring.Inverse(number);
+
+            Polynomial<double> inverse = rationalWithSqrt2Ring.Add(sqrt2,
+                                                                   rationalWithSqrt2Ring.Negative(
+                                                                       rationalWithSqrt2Ring.Identity));
+
+            Assert.IsTrue(rationalWithSqrt2Ring.Comparer.Equals
+                              (result,
+                               inverse));
         }
     }
 }

@@ -18,15 +18,16 @@ namespace Calculators.Algebra
             remainder = dividend;
 
             T divisorLeadingCoefficient = divisor.LeadingCoefficient();
+            T inverseOfCoefficient = mCoefficientsField.Inverse(divisorLeadingCoefficient);
 
             while (divisor.Degree <= remainder.Degree)
             {
                 int degree = remainder.Degree - divisor.Degree;
-                
+
                 Polynomial<T> currentPart =
                     mCoefficientsField.CreateMonomial(
                         mCoefficientsField.Multiply(remainder.LeadingCoefficient(),
-                                                    mCoefficientsField.Inverse(divisorLeadingCoefficient)),
+                                                    inverseOfCoefficient),
                         degree);
 
                 remainder = this.Add(remainder, this.Negative(this.Multiply(currentPart, divisor)));

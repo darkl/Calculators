@@ -7,4 +7,12 @@
         {
         }
     }
+
+    public class IntegersModuloField : QuotientField<int>
+    {
+        public IntegersModuloField(int number) :
+            base(new PrincipalIdeal<int>(new IntegersRing(), number))
+        {
+        }
+    }
 }
