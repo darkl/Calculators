@@ -49,6 +49,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="GoldenRatioConverter.cs" />
+    <Compile Include="GoldenRatioRing.cs" />
     <Compile Include="GoldenRatioRingTests.cs" />
     <Compile Include="IntegersModuloRingTest.cs" />
     <Compile Include="PolynomialTests.cs" />

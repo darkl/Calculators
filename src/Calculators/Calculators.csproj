@@ -47,14 +47,17 @@
     <Compile Include="Algebra\Abstract\IModule.cs" />
     <Compile Include="Algebra\Abstract\IPrincipalIdeal.cs" />
     <Compile Include="Algebra\Abstract\IRingEmbedding.cs" />
+    <Compile Include="Algebra\Abstract\IBijection.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Bijection.cs" />
     <Compile Include="Algebra\Implementation\Generic\CartesianProductRing.cs" />
     <Compile Include="Algebra\Abstract\IEuclideanRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\DelegateBijection.cs" />
     <Compile Include="Algebra\Implementation\Generic\EuclideanRingExtensions.cs" />
     <Compile Include="Algebra\Implementation\Generic\PrincipalIdeal.cs" />
     <Compile Include="Algebra\Implementation\Generic\QuotientField.cs" />
     <Compile Include="Algebra\Implementation\Generic\QuotientRing.cs" />
     <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedEuclideanRing.cs" />
-    <Compile Include="Algebra\Implementation\GoldenRatioRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\TransformedEuclideanRing.cs" />
     <Compile Include="Algebra\Implementation\IntegersModuloRing.cs" />
     <Compile Include="Algebra\Implementation\IntegersRing.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\Polynomial.cs" />
@@ -64,6 +67,8 @@
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialParser.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialParserOptions.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\TransformedField.cs" />
+    <Compile Include="Algebra\Implementation\Generic\TransformedRing.cs" />
     <Compile Include="FieldBasedClosedCalculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="Algebra\Abstract\IField.cs" />
