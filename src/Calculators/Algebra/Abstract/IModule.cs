@@ -1,9 +1,9 @@
 ﻿namespace Calculators.Algebra.Abstract
 {
-    public interface IModule<TRingElement, TElement> : IAdditiveGroup<TElement>
+    public interface IModule<TScalar, TVector> : IAdditiveGroup<TVector>
     {
-        IRing<TRingElement> ScalarRing { get; }
+        IRing<TScalar> ScalarRing { get; }
 
-        TElement Multiply(TRingElement scalar, TElement vector);
+        TVector Multiply(TScalar scalar, TVector vector);
     }
 }

@@ -4,7 +4,8 @@ using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
 {
-    public class FieldOfFractions<T> : IField<Fraction<T>>, IRingEmbedding<T, Fraction<T>>
+    public class FieldOfFractions<T> : IField<Fraction<T>>, IRingEmbedding<T, Fraction<T>>,
+        IModule<T, Fraction<T>>
     {
         private readonly IEqualityComparer<Fraction<T>> mComparer;
         private readonly IRing<T> mRing;
@@ -123,6 +124,20 @@ namespace Calculators.Algebra
         public Fraction<T> Embed(T element)
         {
             return mRing.CreateFraction(element, mRing.Identity);
+        }
+
+        public IRing<T> ScalarRing
+        {
+            get
+            {
+                return mRing;
+            }
+        }
+
+        public Fraction<T> Multiply(T scalar, Fraction<T> vector)
+        {
+            return mRing.CreateFraction(mRing.Multiply(scalar, vector.Numerator),
+                                        vector.Denominator);
         }
     }
 }

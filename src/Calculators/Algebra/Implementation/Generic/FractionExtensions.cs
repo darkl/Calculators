@@ -1,4 +1,5 @@
-﻿using Calculators.Algebra.Abstract;
+﻿using System;
+using Calculators.Algebra.Abstract;
 
 namespace Calculators.Algebra
 {
@@ -8,6 +9,11 @@ namespace Calculators.Algebra
                                                     T numerator,
                                                     T denominator)
         {
+            if (ring.Comparer.Equals(denominator, ring.Zero))
+            {
+                throw new DivideByZeroException();
+            }
+
             IEuclideanRing<T> euclideanRing = ring as IEuclideanRing<T>;
 
             if (euclideanRing != null)
