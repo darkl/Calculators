@@ -49,6 +49,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FieldOfFractionsTests.cs" />
     <Compile Include="GoldenRatioConverter.cs" />
     <Compile Include="GoldenRatioRing.cs" />
     <Compile Include="GoldenRatioRingTests.cs" />

@@ -53,11 +53,14 @@
     <Compile Include="Algebra\Abstract\IEuclideanRing.cs" />
     <Compile Include="Algebra\Implementation\Generic\DelegateBijection.cs" />
     <Compile Include="Algebra\Implementation\Generic\EuclideanRingExtensions.cs" />
+    <Compile Include="Algebra\Implementation\Generic\FieldOfFractions.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Fraction.cs" />
+    <Compile Include="Algebra\Implementation\Generic\FractionExtensions.cs" />
     <Compile Include="Algebra\Implementation\Generic\PrincipalIdeal.cs" />
-    <Compile Include="Algebra\Implementation\Generic\QuotientField.cs" />
-    <Compile Include="Algebra\Implementation\Generic\QuotientRing.cs" />
-    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedEuclideanRing.cs" />
-    <Compile Include="Algebra\Implementation\Generic\TransformedEuclideanRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Quotient\QuotientField.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Quotient\QuotientRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\OperatorBased\Slow\SlowOperatorBasedEuclideanRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Transformed\TransformedEuclideanRing.cs" />
     <Compile Include="Algebra\Implementation\IntegersModuloRing.cs" />
     <Compile Include="Algebra\Implementation\IntegersRing.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\Polynomial.cs" />
@@ -67,8 +70,8 @@
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialParser.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialParserOptions.cs" />
     <Compile Include="Algebra\Implementation\Polynomial\PolynomialRing.cs" />
-    <Compile Include="Algebra\Implementation\Generic\TransformedField.cs" />
-    <Compile Include="Algebra\Implementation\Generic\TransformedRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Transformed\TransformedField.cs" />
+    <Compile Include="Algebra\Implementation\Generic\Transformed\TransformedRing.cs" />
     <Compile Include="FieldBasedClosedCalculator.cs" />
     <Compile Include="ICalculator.cs" />
     <Compile Include="Algebra\Abstract\IField.cs" />
@@ -80,12 +83,15 @@
     <Compile Include="OperatorSyntax.cs" />
     <Compile Include="PolynomialBuilder.cs" />
     <Compile Include="SlowOperatorBasedClosedCalculator.cs" />
-    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedRing.cs" />
+    <Compile Include="Algebra\Implementation\Generic\OperatorBased\Slow\SlowOperatorBasedRing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Algebra\Implementation\Generic\SlowOperatorBasedField.cs" />
+    <Compile Include="Algebra\Implementation\Generic\OperatorBased\Slow\SlowOperatorBasedField.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Algebra\Implementation\Generic\OperatorBased\Fast\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
